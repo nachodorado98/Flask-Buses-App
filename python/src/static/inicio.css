@@ -1,0 +1,143 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+nav h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #ff6600;
+}
+
+main {
+    max-width: 960px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+main h2 {
+    font-size: 56px;
+    margin-bottom: 20px;
+}
+
+.contenedor-tabla {
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+}
+
+.contenedor-tabla table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+table th, table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+}
+
+table th {
+    background-color: #333;
+    color: #fff;
+    font-size: 20px;
+}
+
+footer {
+    text-align: center;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    margin-top: auto;
+}
+
+table td a {
+    text-decoration: none;
+    color: #333;
+    background-color: #f2f2f2;
+    padding: 8px 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    font-size: 18px;
+    display: inline-block;
+}
+
+table td a:hover {
+    color: #ff6600;
+    transform: scale(1.05);
+}
+
+p {
+    font-style: italic;
+    color: #888;
+}
+
+.nueva-linea-button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: #f2f2f2;
+    color: #333;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+.nueva-linea-button:hover {
+    color: #ff6600;
+    transform: scale(1.05);
+}
+

@@ -1,4 +1,6 @@
-from flask import Blueprint
+from flask import Blueprint, render_template
+
+from src.database.conexion import Conexion
 
 bp=Blueprint("blueprint", __name__)
 
@@ -6,4 +8,8 @@ bp=Blueprint("blueprint", __name__)
 @bp.route("/", methods=["GET"])
 def inicio()->str:
 
-	return f"<h1>Hola Mundo</h1>"
+	conexion=Conexion()
+
+	lineas_recorridas=conexion.obtenerLineasRecorridas()
+
+	return render_template("inicio.html", lineas_recorridas=lineas_recorridas)

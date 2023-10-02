@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buses App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='inicio.css') }}">
+</head>
+<body>
+ <header>
+        <nav>
+            <h1>Buses App</h1>
+            <ul>
+                <li><a href="/">Inicio</a></li>
+                <li><a href="#">Añadir Nueva Línea</a></li>
+                <li><a href="#">Paradas Favoritas</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <h2>Lineas de autobuses recorridas</h2>
+        {% if lineas_recorridas %}
+            <div class="contenedor-tabla">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Linea</th>
+                            <th>Inicio de la Línea</th>
+                            <th>Fin de la Línea</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for linea in lineas_recorridas %}
+                            <tr>
+                                <td><a href="#">{{ linea[0] }}</a></td>
+                                <td>{{ linea[1] }}</td>
+                                <td>{{ linea[2] }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <p>No hay líneas recorridas disponibles.</p>
+            <a href="#" class="nueva-linea-button">Añadir Nueva Línea Recorrida</a>
+        {% endif %}
+    </main>
+</body>
+<footer>
+        <p>&copy; 2023 Bus App</p>
+    </footer>
+</html>
