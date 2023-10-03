@@ -59,3 +59,31 @@ class Conexion:
 							(linea,))
 
 		self.confirmar()
+
+	# Metodo para obtener el detalle de una linea
+	def obtenerDetalleLinea(self, linea:str)->Optional[tuple]:
+
+		self.c.execute("""SELECT Inicio, Fin, Tipo
+							FROM lineas
+							WHERE Linea=%s""",
+							(linea,))
+
+		linea=self.c.fetchone()
+
+		return None if linea is None else (linea["inicio"], linea["fin"], linea["tipo"])
+
+
+	# Metodo para obtener numero de paradas de una linea
+	def obtenerNumeroParadas(self, linea:str)->Optional[int]:
+
+		self.c.execute("""SELECT COUNT(p.Parada) as Numero_paradas
+							FROM lineas l
+							JOIN paradas p
+							USING(Id_Linea)
+							GROUP BY Id_Linea
+							HAVING Linea=%s""",
+							(linea,))
+
+		paradas=self.c.fetchone()
+
+		return None if paradas is None else paradas["numero_paradas"]

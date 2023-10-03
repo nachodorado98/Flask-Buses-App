@@ -62,6 +62,7 @@ main {
 main h2 {
     font-size: 56px;
     margin-bottom: 20px;
+    text-align: center;
 }
 
 .contenedor-tabla {
@@ -204,3 +205,93 @@ p {
     color: #ff6600;
     transform: scale(1.05);
 }
+
+.contenedor-detalle {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.texto-inicio-fin {
+    color: #333;
+    font-size: 34px;
+    margin-bottom: 30px;
+    margin-top: 0px;
+}
+
+.texto-tipo {
+    color: #333;
+    font-size: 30px;
+    margin-bottom: 30px;
+    margin-top: 0px;
+}
+
+.texto-numero-paradas {
+    color: #333;
+    font-size: 26px;
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+
+.seleccion-1-button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.seleccion-1-button:hover {
+    background-color: #555;
+}
+
+.seleccion-2-button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.seleccion-2-button:hover {
+    background-color: #555;
+}
+
+.contenedor-no-paradas {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.contenedor-volver {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.volver-button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: #f2f2f2;
+    color: #333;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+.volver-button:hover {
+    color: #ff6600;
+    transform: scale(1.05);
+}
+

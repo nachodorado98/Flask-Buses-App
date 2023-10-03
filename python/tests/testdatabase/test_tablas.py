@@ -82,7 +82,7 @@ def test_obtener_lineas_no_recorridas_varias_recorridas(conexion):
 @pytest.mark.parametrize(["linea"],
 	[("1",),("34",),("9",),("139",),("N17",),("M1",)]
 )
-def test_anadir_linea_rcorrida(conexion, linea):
+def test_anadir_linea_recorrida(conexion, linea):
 
 	conexion.anadirLineaRecorrida(linea)
 
@@ -96,3 +96,31 @@ def test_anadir_linea_rcorrida(conexion, linea):
 							(linea,))
 
 	assert conexion.c.fetchone()["recorrida"]
+
+@pytest.mark.parametrize(["linea"],
+	[("13",),("90",),("91",),("99",),("1000",),("S",)]
+)
+def test_obtener_detalle_linea_no_existe(conexion, linea):
+
+	assert conexion.obtenerDetalleLinea(linea) is None
+
+@pytest.mark.parametrize(["linea"],
+	[("1",),("34",),("9",),("139",),("N17",),("M1",)]
+)
+def test_obtener_detalle_linea(conexion, linea):
+
+	assert conexion.obtenerDetalleLinea(linea) is not None
+
+@pytest.mark.parametrize(["linea"],
+	[("13",),("90",),("N2",),("M1",),("SE661",)]
+)
+def test_obtener_paradas_linea_no_tiene(conexion, linea):
+
+	assert conexion.obtenerNumeroParadas(linea) is None
+
+@pytest.mark.parametrize(["linea"],
+	[("1",),("34",),("9",),("139",),("47",),("35",)]
+)
+def test_obtener_paradas_linea(conexion, linea):
+
+	assert conexion.obtenerNumeroParadas(linea) is not None

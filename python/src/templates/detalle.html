@@ -1,0 +1,26 @@
+{% extends 'inicio.html' %}
+
+{% block pestana %}Detalle Linea {{ linea }}{% endblock pestana %}
+
+{% block titulo %}Detalle de la linea {{ linea }}{% endblock titulo %}
+
+{% block principal %}
+
+<div class="contenedor-detalle">
+    <h1 class="texto-inicio-fin">{{ inicio }} - {{ fin }}</h1>
+    <h2 class="texto-tipo">Autobus {{ tipo }}</h2>
+    {% if numero_paradas %}
+        <h3 class="texto-numero-paradas">Numero de paradas: {{ numero_paradas }}</h3>
+        <a href="#" class="seleccion-1-button">Ver recorrido</a>
+        <a href="#" class="seleccion-2-button">Seleccionar paradas favoritas</a>
+    {% else %}
+        <div class="contenedor-no-paradas">
+            <p>No hay informacion de las paradas de esta linea.</p>
+        </div>
+    {% endif %}
+</div>
+<div class="contenedor-volver">
+    <a href="/" class="volver-button">Volver</a>
+</div>
+            
+{% endblock principal %}
