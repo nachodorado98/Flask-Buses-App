@@ -141,3 +141,66 @@ p {
     transform: scale(1.05);
 }
 
+.contenedor-form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.texto-seleccionar {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.seleccion {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.seleccion-button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.seleccion-button:hover {
+    background-color: #555;
+}
+
+.mensaje-no-lineas {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.no-linea-button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: #f2f2f2;
+    color: #333;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+.no-linea-button:hover {
+    color: #ff6600;
+    transform: scale(1.05);
+}

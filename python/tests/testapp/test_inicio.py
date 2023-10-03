@@ -1,3 +1,5 @@
+import pytest
+
 def test_pagina_inicial_sin_lineas_recorridas(cliente, conexion):
 
 	respuesta=cliente.get("/")

@@ -31,13 +31,31 @@ class Conexion:
 		self.bbdd.commit()
 
 	# Metodo para obtener las lineas recorridas
-	def obtenerLineasRecorridas(self)->Optional[List[tuple]]:
+	def obtenerLineasRecorridas(self, recorrida:bool=True)->Optional[List[tuple]]:
 
-		self.c.execute("""SELECT Linea, Inicio, Fin
-							FROM lineas
-							WHERE Recorrida=True
-							ORDER BY Id_Linea""")
+		if recorrida:
+
+			self.c.execute("""SELECT Linea, Inicio, Fin
+								FROM lineas
+								WHERE Recorrida=True
+								ORDER BY Id_Linea""")
+		else:
+
+			self.c.execute("""SELECT Linea, Inicio, Fin
+								FROM lineas
+								WHERE Recorrida=False
+								ORDER BY Id_Linea""")
 
 		lineas=self.c.fetchall()
 
 		return list(map(lambda linea: (linea["linea"], linea["inicio"], linea["fin"]), lineas)) if lineas else None
+
+	# Metodo para añadir una linea a recorrida
+	def anadirLineaRecorrida(self, linea:str)->None:
+
+		self.c.execute("""UPDATE lineas
+							SET Recorrida=True
+							WHERE Linea=%s""",
+							(linea,))
+
+		self.confirmar()
