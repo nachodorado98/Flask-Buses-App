@@ -9,8 +9,6 @@ def test_pagina_detalle_linea_no_paradas(cliente, conexion, linea):
 
 	contenido=respuesta.data.decode()
 
-	print(contenido)
-
 	respuesta.status_code==200
 	assert "Detalle de la linea" in contenido
 	assert linea in contenido
@@ -26,8 +24,6 @@ def test_pagina_detalle_linea(cliente, conexion, linea):
 	respuesta=cliente.get(f"/detalle_linea/{linea}")
 
 	contenido=respuesta.data.decode()
-
-	print(contenido)
 
 	respuesta.status_code==200
 	assert "Detalle de la linea" in contenido

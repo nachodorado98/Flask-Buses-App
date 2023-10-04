@@ -295,3 +295,86 @@ p {
     transform: scale(1.05);
 }
 
+.contenedor-form-paradas {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.texto-seleccionar-paradas {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.form-paradas {
+    display: flex;
+    flex-direction: column;
+}
+
+.seleccion-parada {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.seleccion-parada-button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.seleccion-parada-button:hover {
+    background-color: #555;
+}
+
+.contenedor-cancelar {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.cancelar-button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: #f2f2f2;
+    color: #333;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+.cancelar-button:hover {
+    color: #ff6600;
+    transform: scale(1.05);
+}
+.mensaje-no-paradas {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.no-parada-button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: #f2f2f2;
+    color: #333;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+.no-parada-button:hover {
+    color: #ff6600;
+    transform: scale(1.05);
+}

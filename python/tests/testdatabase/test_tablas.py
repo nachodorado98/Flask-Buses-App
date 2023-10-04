@@ -124,3 +124,72 @@ def test_obtener_paradas_linea_no_tiene(conexion, linea):
 def test_obtener_paradas_linea(conexion, linea):
 
 	assert conexion.obtenerNumeroParadas(linea) is not None
+
+@pytest.mark.parametrize(["linea"],
+	[("13",),("S",),("90",),("99",),("1000",)]
+)
+def test_obtener_paradas_linea_no_existente(conexion, linea):
+
+	assert conexion.obtenerParadasNoFavoritas(linea) is None
+
+@pytest.mark.parametrize(["linea", "cantidad"],
+	[
+		("1", 57),
+		("34", 82),
+		("139", 47),
+		("9", 71)
+	]
+)
+def test_obtener_paradas_linea_sin_favoritas(conexion, linea, cantidad):
+
+	paradas=conexion.obtenerParadasNoFavoritas(linea)
+
+	assert len(paradas)==cantidad
+
+@pytest.mark.parametrize(["linea", "id_parada", "cantidad"],
+	[
+		("1", 210, 57),
+		("34", 232, 82),
+		("139", 852, 47),
+		("9", 212, 71)
+	]
+)
+def test_obtener_paradas_linea_con_favorita(conexion, linea, id_parada, cantidad):
+
+	conexion.c.execute(f"""UPDATE paradas
+							SET Favorita=True
+							WHERE Id_Parada={id_parada}""")
+
+	conexion.confirmar()
+
+	paradas=conexion.obtenerParadasNoFavoritas(linea)
+
+	assert len(paradas)==cantidad-1
+
+@pytest.mark.parametrize(["linea"],
+	[("1",),("34",),("9",),("139",),("47",),("35",)]
+)
+def test_obtener_paradas_linea_todas_favoritas(conexion, linea):
+
+	conexion.c.execute("""UPDATE paradas
+							SET Favorita=True""")
+
+	conexion.confirmar()
+
+	assert conexion.obtenerParadasNoFavoritas(linea) is None
+
+def test_anadir_parada_favorita(conexion):
+
+	assert len(conexion.obtenerParadasNoFavoritas("1"))==57
+
+	conexion.anadirParadaFavorita(210)
+
+	paradas=conexion.obtenerParadasNoFavoritas("1")
+
+	assert len(paradas)==56
+
+	conexion.c.execute("""SELECT Favorita
+							FROM paradas
+							WHERE Id_Parada=210""")
+
+	assert conexion.c.fetchone()["favorita"]

@@ -72,7 +72,6 @@ class Conexion:
 
 		return None if linea is None else (linea["inicio"], linea["fin"], linea["tipo"])
 
-
 	# Metodo para obtener numero de paradas de una linea
 	def obtenerNumeroParadas(self, linea:str)->Optional[int]:
 
@@ -87,3 +86,29 @@ class Conexion:
 		paradas=self.c.fetchone()
 
 		return None if paradas is None else paradas["numero_paradas"]
+
+	# Metodo para obtener las paradas de una linea que no son favoritas
+	def obtenerParadasNoFavoritas(self, linea:str)->Optional[List[tuple]]:
+
+		self.c.execute("""SELECT p.Id_Parada, p.Parada, p.Nombre, p.Sentido
+							FROM lineas l
+							JOIN paradas p
+							USING(Id_Linea)
+							WHERE l.Linea=%s
+							AND Favorita=False
+							ORDER BY p.Sentido, p.Parada;""",
+							(linea,))
+
+		paradas=self.c.fetchall()
+
+		return list(map(lambda parada: (parada["id_parada"], parada["parada"], parada["nombre"], parada["sentido"]), paradas)) if paradas else None
+
+	# Metodo para añadir una parada a favorita
+	def anadirParadaFavorita(self, id_parada:int)->None:
+
+		self.c.execute("""UPDATE paradas
+							SET Favorita=True
+							WHERE Id_Parada=%s""",
+							(id_parada,))
+
+		self.confirmar()
