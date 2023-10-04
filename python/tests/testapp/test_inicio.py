@@ -29,9 +29,3 @@ def test_pagina_inicial_con_lineas_recorridas(cliente, conexion):
 	assert "<th>Linea</th>" in contenido
 	assert "<th>Inicio de la Línea</th>" in contenido
 	assert "<th>Fin de la Línea</th>" in contenido
-
-	conexion.c.execute("""UPDATE lineas
-						SET Recorrida=False
-						WHERE Id_Linea=1""")
-
-	conexion.confirmar()

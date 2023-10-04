@@ -193,3 +193,43 @@ def test_anadir_parada_favorita(conexion):
 							WHERE Id_Parada=210""")
 
 	assert conexion.c.fetchone()["favorita"]
+
+def test_obtener_paradas_favoritas_no_existentes(conexion):
+
+	assert conexion.obtenerParadasFavoritas() is None
+
+def test_obtener_paradas_favoritas_existente(conexion):
+
+	conexion.anadirParadaFavorita(210)
+
+	favoritas=conexion.obtenerParadasFavoritas()
+
+	assert len(favoritas)==1
+
+def test_obtener_paradas_favoritas_existentes(conexion):
+
+	for id_parada in range(1,101):
+
+		conexion.anadirParadaFavorita(id_parada)
+
+	favoritas=conexion.obtenerParadasFavoritas()
+
+	assert len(favoritas)==100
+
+def test_eliminar_parada_favorita(conexion):
+
+	conexion.anadirParadaFavorita(210)
+
+	conexion.c.execute("""SELECT Favorita
+							FROM paradas
+							WHERE Id_Parada=210""")
+
+	assert conexion.c.fetchone()["favorita"]
+
+	conexion.eliminarParadaFavorita(210)
+
+	conexion.c.execute("""SELECT Favorita
+							FROM paradas
+							WHERE Id_Parada=210""")
+
+	assert not conexion.c.fetchone()["favorita"]

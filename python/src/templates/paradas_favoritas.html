@@ -1,0 +1,39 @@
+{% extends 'inicio.html' %}
+
+{% block pestana %}Paradas favoritas{% endblock pestana %}
+
+{% block titulo %}Paradas favoritas{% endblock titulo %}
+
+{% block principal %}
+
+{% if paradas_favoritas %}
+    <div class="contenedor-tabla-favoritas">
+        <table>
+            <thead>
+                <tr>
+                    <th>Linea</th>
+                    <th>Parada</th>
+                    <th>Nombre de la parada</th>
+                    <th>Sentido</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for parada in paradas_favoritas %}
+                    <tr>
+                        <td>{{ parada[3] }}</td>
+                        <td>{{ parada[1] }}</td>
+                        <td>{{ parada[2] }}</td>
+                        <td>{{ parada[4] }}</td>
+                        <td><a href="/eliminar_parada_favorita/{{ parada[0] }}" class="boton-eliminar-parada">X</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% else %}
+    <p>No hay paradas favoritas aún.</p>
+    <a href="/" class="volver-favoritas-button">Volver</a>
+{% endif %}
+
+{% endblock principal %}

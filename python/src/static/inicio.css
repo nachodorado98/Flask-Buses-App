@@ -378,3 +378,49 @@ p {
     color: #ff6600;
     transform: scale(1.05);
 }
+
+.contenedor-tabla-favoritas {
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+}
+
+.contenedor-tabla-favoritas table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+.boton-eliminar-parada {
+    text-decoration: none;
+    color: #fff;
+    background-color: #fa9482;
+    padding: 6px 14px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    font-size: 15px;
+    display: inline-block;
+}
+
+.boton-eliminar-parada:hover {
+    color: #fff;
+    background-color: #f7593e;
+    transform: scale(1.15);
+}
+
+.volver-favoritas-button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: #f2f2f2;
+    color: #333;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+.volver-favoritas-button:hover {
+    color: #ff6600;
+    transform: scale(1.05);
+}

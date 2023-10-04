@@ -96,7 +96,7 @@ class Conexion:
 							USING(Id_Linea)
 							WHERE l.Linea=%s
 							AND Favorita=False
-							ORDER BY p.Sentido, p.Parada;""",
+							ORDER BY p.Sentido, p.Parada""",
 							(linea,))
 
 		paradas=self.c.fetchall()
@@ -108,6 +108,30 @@ class Conexion:
 
 		self.c.execute("""UPDATE paradas
 							SET Favorita=True
+							WHERE Id_Parada=%s""",
+							(id_parada,))
+
+		self.confirmar()
+
+	# Metodo para obtener las paradas favoritas
+	def obtenerParadasFavoritas(self)->Optional[List[tuple]]:
+
+		self.c.execute("""SELECT l.Id_Linea, p.Id_Parada, p.Parada, p.Nombre, l.Linea, p.Sentido
+							FROM lineas l
+							JOIN paradas p
+							USING(Id_Linea)
+							WHERE Favorita=True
+							ORDER BY l.Id_Linea, p.Sentido, p.Parada""")
+
+		paradas=self.c.fetchall()
+
+		return list(map(lambda parada: (parada["id_parada"], parada["parada"], parada["nombre"], parada["linea"], parada["sentido"]), paradas)) if paradas else None
+
+	# Metodo para eliminar una parada a favorita
+	def eliminarParadaFavorita(self, id_parada:int)->None:
+
+		self.c.execute("""UPDATE paradas
+							SET Favorita=False
 							WHERE Id_Parada=%s""",
 							(id_parada,))
 
