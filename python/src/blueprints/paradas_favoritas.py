@@ -25,3 +25,16 @@ def eliminarParadaFavorita(id_parada):
 	conexion.cerrarConexion()
 
 	return redirect(url_for("paradas_favoritas.obtenerParadasFavoritas"))
+
+@bp_paradas_favoritas.route("/ver_parada_favorita/<id_parada>", methods=["GET"])
+def verParadaFavorita(id_parada):
+
+	conexion=Conexion()
+
+	latitud, longitud=conexion.obtenerCoordenadasParada(id_parada)
+
+	nombre, parada=conexion.obtenerInformacionParada(id_parada)
+
+	conexion.cerrarConexion()
+
+	return render_template("mapa_parada.html", latitud=latitud, longitud=longitud, nombre=nombre, parada=parada)

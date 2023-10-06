@@ -233,3 +233,35 @@ def test_eliminar_parada_favorita(conexion):
 							WHERE Id_Parada=210""")
 
 	assert not conexion.c.fetchone()["favorita"]
+
+@pytest.mark.parametrize(["id_parada"],
+	[(0,),(-1,),(8356,),(10000,)]
+)
+def test_obtener_coordenadas_parada_no_existente(conexion, id_parada):
+
+	assert conexion.obtenerCoordenadasParada(id_parada) is None
+
+@pytest.mark.parametrize(["id_parada"],
+	[(10,),(1,),(8355,),(1000,)]
+)
+def test_obtener_coordenadas_parada(conexion, id_parada):
+
+	coordenadas=conexion.obtenerCoordenadasParada(id_parada)
+
+	assert len(coordenadas)==2
+
+@pytest.mark.parametrize(["id_parada"],
+	[(0,),(-1,),(8356,),(10000,)]
+)
+def test_obtener_informacion_parada_no_existente(conexion, id_parada):
+
+	assert conexion.obtenerInformacionParada(id_parada) is None
+
+@pytest.mark.parametrize(["id_parada"],
+	[(10,),(1,),(8355,),(1000,)]
+)
+def test_obtener_informacion_parada(conexion, id_parada):
+
+	informacion=conexion.obtenerInformacionParada(id_parada)
+
+	assert len(informacion)==2

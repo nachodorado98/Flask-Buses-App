@@ -16,13 +16,16 @@
                     <th>Nombre de la parada</th>
                     <th>Sentido</th>
                     <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 {% for parada in paradas_favoritas %}
                     <tr>
                         <td>{{ parada[3] }}</td>
-                        <td>{{ parada[1] }}</td>
+                        <td><a href="/ver_parada_favorita/{{ parada[0] }}" class="boton-ver-parada">
+                            {{ parada[1] }}
+                        </a></td>
                         <td>{{ parada[2] }}</td>
                         <td>{{ parada[4] }}</td>
                         <td><a href="/eliminar_parada_favorita/{{ parada[0] }}" class="boton-eliminar-parada">X</a></td>

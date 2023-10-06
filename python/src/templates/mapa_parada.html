@@ -1,0 +1,23 @@
+{% extends 'inicio.html' %}
+
+{% block pestana %}Mapa Parada{% endblock pestana %}
+
+{% block titulo %}Mapa parada {{ parada }}{% endblock titulo %}
+
+{% block principal %}
+
+<div id="mapa" class="mapa"></div>
+<script>
+    var map=L.map("mapa").setView([{{ latitud }}, {{ longitud }}], 15);
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {maxZoom: 19}).addTo(map);
+
+    var texto="{{ nombre }} - Parada {{ parada }}";
+
+    var marker=L.marker([{{ latitud }}, {{ longitud }}]).bindPopup(texto).addTo(map);
+</script>
+<div class="contenedor-volver">
+    <a href="/paradas_favoritas" class="volver-button">Volver</a>
+</div>
+
+{% endblock principal %}

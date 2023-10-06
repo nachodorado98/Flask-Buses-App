@@ -136,3 +136,27 @@ class Conexion:
 							(id_parada,))
 
 		self.confirmar()
+
+	# Metodo para obtener las coordenadas de una parada
+	def obtenerCoordenadasParada(self, id_parada:int)->Optional[tuple]:
+
+		self.c.execute("""SELECT Latitud, Longitud
+							FROM paradas
+							WHERE Id_Parada=%s""",
+							(id_parada,))
+
+		parada=self.c.fetchone()
+
+		return None if parada is None else (parada["latitud"], parada["longitud"])
+
+	# Metodo para obtener la informacion (nombre y numero) de una parada
+	def obtenerInformacionParada(self, id_parada:int)->Optional[tuple]:
+
+		self.c.execute("""SELECT Nombre, Parada
+							FROM paradas
+							WHERE Id_Parada=%s""",
+							(id_parada,))
+
+		parada=self.c.fetchone()
+
+		return None if parada is None else (parada["nombre"], parada["parada"])
