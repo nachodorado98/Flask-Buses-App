@@ -11,7 +11,7 @@
     <h2 class="texto-tipo">Autobus {{ tipo }}</h2>
     {% if numero_paradas %}
         <h3 class="texto-numero-paradas">Numero de paradas: {{ numero_paradas }}</h3>
-        <a href="#" class="seleccion-1-button">Ver recorrido</a>
+        <a href="/ver_recorrido/{{ linea }}" class="seleccion-1-button">Ver recorrido</a>
         <a href="/seleccionar_parada/{{ linea }}" class="seleccion-2-button">Seleccionar paradas favoritas</a>
     {% else %}
         <div class="contenedor-no-paradas">

@@ -265,3 +265,47 @@ def test_obtener_informacion_parada(conexion, id_parada):
 	informacion=conexion.obtenerInformacionParada(id_parada)
 
 	assert len(informacion)==2
+
+@pytest.mark.parametrize(["linea"],
+	[("13",),("S",),("N17",),("M1",),("1000",)]
+)
+def test_obtener_paradas_linea_sentido_no_existen(conexion, linea):
+
+	assert conexion.obtenerRecorrido(linea) is None
+
+@pytest.mark.parametrize(["linea"],
+	[("1",),("34",),("35",),("9",),("139",)]
+)
+def test_obtener_paradas_linea_sentido_ida(conexion, linea):
+
+	paradas=conexion.obtenerRecorrido(linea)
+
+	for parada in paradas:
+
+		assert "Ida" in parada
+		assert "Vuelta" not in parada
+
+@pytest.mark.parametrize(["linea"],
+	[("1",),("34",),("35",),("9",),("139",)]
+)
+def test_obtener_paradas_linea_sentido_vuelta(conexion, linea):
+
+	paradas=conexion.obtenerRecorrido(linea, ida=False)
+
+	for parada in paradas:
+
+		assert "Ida" not in parada
+		assert "Vuelta" in parada
+
+@pytest.mark.parametrize(["linea"],
+	[("1",),("34",),("35",),("9",),("139",)]
+)
+def test_obtener_paradas_linea_ambos_sentido(conexion, linea):
+
+	paradas_ida=conexion.obtenerRecorrido(linea)
+
+	paradas_vuelta=conexion.obtenerRecorrido(linea, ida=False)
+
+	paradas_total=conexion.obtenerNumeroParadas(linea)
+
+	assert paradas_total==len(paradas_ida)+len(paradas_vuelta)

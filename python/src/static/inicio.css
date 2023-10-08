@@ -432,3 +432,39 @@ p {
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
+
+.leyenda {
+    position: absolute;
+    bottom: 70px;
+    left: 260px;
+    background-color: white;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    z-index: 1000;
+}
+
+.leyenda h3 {
+    margin: 0 0 10px;
+    font-size: 18px;
+}
+
+.leyenda-item {
+    margin-bottom: 5px;
+}
+
+.circle {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.red {
+    background-color: red;
+}
+
+.blue {
+    background-color: blue;
+}

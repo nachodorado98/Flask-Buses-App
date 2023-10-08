@@ -160,3 +160,20 @@ class Conexion:
 		parada=self.c.fetchone()
 
 		return None if parada is None else (parada["nombre"], parada["parada"])
+
+	# Metodo para obtener las paradas del recorrido de una linea en un sentido
+	def obtenerRecorrido(self, linea:str, ida:bool=True)->Optional[List[tuple]]:
+
+		sentido="Ida" if ida else "Vuelta"
+
+		self.c.execute("""SELECT l.Linea, p.Parada, p.Nombre, p.Sentido, p.Latitud, p.Longitud
+							FROM lineas l
+							JOIN paradas p
+							USING(Id_Linea)
+							WHERE l.Linea=%s
+							AND p.Sentido=%s""",
+							(linea, sentido))
+
+		paradas=self.c.fetchall()
+
+		return list(map(lambda parada: (parada["linea"], parada["parada"], parada["nombre"], parada["sentido"], parada["latitud"], parada["longitud"]), paradas)) if paradas else None

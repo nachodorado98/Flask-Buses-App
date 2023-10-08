@@ -1,0 +1,36 @@
+{% extends 'inicio.html' %}
+
+{% block pestana %}Mapa Recorrido{% endblock pestana %}
+
+{% block titulo %}Mapa recorrido linea {{ linea }}{% endblock titulo %}
+
+{% block principal %}
+
+<div id="mapa" class="mapa"></div>
+<div id="leyenda" class="leyenda">
+    <h3>Leyenda Recorrido</h3>
+    <div class="leyenda-item"><span class="circle blue"></span>Parada Ida</div>
+    <div class="leyenda-item"><span class="circle red"></span>Parada vuelta</div>
+</div>
+<script>
+    var mapa=L.map("mapa").setView([{{ paradas_ida[0][-2] }}, {{ paradas_ida[0][-1] }}], 12);
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {maxZoom:19}).addTo(mapa);
+
+    {% for parada_ida in paradas_ida %}
+        var texto_ida="{{ parada_ida[2] }} - Parada {{ parada_ida[1] }} ({{ parada_ida[3] }})";
+
+        var marker_ida=L.circleMarker([{{ parada_ida[-2] }}, {{ parada_ida[-1] }}], {radius:3, color:"blue"}).bindPopup(texto_ida).addTo(mapa);
+    {% endfor %}
+
+    {% for parada_vuelta in paradas_vuelta %}
+        var texto_vuelta="{{ parada_vuelta[2] }} - Parada {{ parada_vuelta[1] }} ({{ parada_vuelta[3] }})";
+
+        var marker_vuelta=L.circleMarker([{{ parada_vuelta[-2] }}, {{ parada_vuelta[-1] }}], {radius:3, color:"red"}).bindPopup(texto_vuelta).addTo(mapa);
+    {% endfor %}
+</script>
+<div class="contenedor-volver">
+    <a href="/detalle_linea/{{ linea }}" class="volver-button">Volver</a>
+</div>
+
+{% endblock principal %}
